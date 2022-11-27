@@ -1,6 +1,5 @@
 package com.example.travelator.optional.kotlin
 
-import java.util.*
 import kotlin.time.Duration
 
 object Legs {
