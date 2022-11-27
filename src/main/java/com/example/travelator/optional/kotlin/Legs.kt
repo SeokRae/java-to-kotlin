@@ -12,11 +12,12 @@ object Legs {
     ): Optional<Leg> {
         var result: Leg? = null
         for (leg in legs) {
-            if (isLongerThan(leg, duration)
-                && (result == null ||
-                        isLongerThan(leg, result.plannedDuration))
-            ) {
-                result = leg
+            if (isLongerThan(leg, duration)) {
+                if (result == null ||
+                    isLongerThan(leg, result.plannedDuration)
+                ) {
+                    result = leg
+                }
             }
         }
         return Optional.ofNullable(result)
