@@ -1,10 +1,8 @@
 package com.example.travelator.optional.kotlin
 
-import com.example.travelator.optional.kotlin.Legs.findLongestLegOver
+import com.example.travelator.optional.kotlin.Legs.longestLegOver
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -23,34 +21,24 @@ internal class LegsTest {
     private val oneDay: Duration = 1.days
 
     @Test
-    internal fun testCase1() {
-        val actual = findLongestLegOver(emptyList(), Duration.ZERO)
-        assertThat(actual).isEmpty
-    }
-
-    @Test
-    internal fun testCase2() {
-        val actual = findLongestLegOver(emptyList(), Duration.ZERO)
-        assertThat(actual).isEqualTo(Optional.empty<Any>())
-    }
-
-    @Test
-    internal fun testCase3() {
-        val actual = findLongestLegOver(legs, oneDay)
-        assertThat(actual).isEqualTo(Optional.empty<Any>())
-    }
-
-    @Test
-    internal fun testCase4() { // two hour ??
-        val actual = findLongestLegOver(legs, oneDay.minus(1.milliseconds))
-            .orElseThrow().description
+    internal fun `test case4`() { // two hour ??
+        val actual = longestLegOver(legs, oneDay.minus(1.milliseconds))!!.description
         assertThat(actual).isEqualTo("one day")
     }
 
     @Test
-    internal fun testCase5() {
-        val actual = findLongestLegOver(legs, 59.minutes)
-            .orElseThrow().description
+    internal fun `test case5`() {
+        val actual = longestLegOver(legs, 59.minutes)?.description
         assertThat(actual).isEqualTo("one day")
+    }
+
+    @Test
+    fun `is absent when no legs`() {
+        assertThat(longestLegOver(emptyList(), Duration.ZERO)).isNull()
+    }
+
+    @Test
+    fun `is absent when no legs long enough`() {
+        assertThat(longestLegOver(legs, oneDay)).isNull()
     }
 }
