@@ -6,13 +6,14 @@ import java.util.Optional;
 
 public class Legs {
 	
-	private Legs () {}
+	private Legs() {
+	}
 	
 	public static Optional<Leg> findLongestLegOver(List<Leg> legs, Duration duration) {
 		Leg result = null;
 		for (Leg leg : legs) {
-			if(isLongerThan(leg, duration)) {
-				if(result == null || isLongerThan(leg, result.getPlannedDuration())) {
+			if (isLongerThan(leg, duration)) {
+				if (result == null || isLongerThan(leg, result.getPlannedDuration())) {
 					result = leg;
 				}
 			}

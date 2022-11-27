@@ -1,7 +1,6 @@
 package com.example.travelator.optional.java;
 
 import java.time.Duration;
-import java.util.Optional;
 
 public class Leg {
 	private final String name;
