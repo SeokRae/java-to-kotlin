@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
@@ -8,7 +10,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -32,16 +34,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "17"
+
+test {
+    useJUnitPlatform {
+        includeEngines "junit-jupiter"
+    }
+    testLogging {
+        events "skipped", "failed"
     }
 }
-compileTestKotlin {
+
+tasks.withType(KotlinCompile) {
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "11"
+        javaParameters = true
+        freeCompilerArgs = ["-Xjvm-default=all"]
     }
 }
