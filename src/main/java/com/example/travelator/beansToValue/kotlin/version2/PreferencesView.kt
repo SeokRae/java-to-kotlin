@@ -1,8 +1,9 @@
-package com.example.travelator.beansToValue.kotlin.version1
+package com.example.travelator.beansToValue.kotlin.version2
 
 import com.example.travelator.beansToValue.CurrencyPicker
 import com.example.travelator.beansToValue.GreetingPicker
 import com.example.travelator.beansToValue.LocalePicker
+
 
 /**
  * 가변 데이터에서 전형적으로 드러날 수 있는 복잡성 투성인 객체
@@ -14,11 +15,12 @@ class PreferencesView(
     private val localePicker = LocalePicker()
     private val currencyPicker = CurrencyPicker()
 
-    override fun show() {
+    fun showModel(): UserPreferences {
         greetingPicker.greeting = preferences.greeting
         localePicker.locale = preferences.locale
         currencyPicker.currency = preferences.currency
-        super.show()
+        show()
+        return preferences
     }
 
     protected fun onGreetingChange() {

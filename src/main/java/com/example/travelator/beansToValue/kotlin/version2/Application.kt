@@ -1,4 +1,4 @@
-package com.example.travelator.beansToValue.kotlin.version1
+package com.example.travelator.beansToValue.kotlin.version2
 
 class Application(
     private var preferences: UserPreferences
@@ -8,6 +8,6 @@ class Application(
     }
 
     fun editPreferences() {
-        PreferencesView(preferences).show()
+        preferences = PreferencesView(preferences).showModel()
     }
 }
