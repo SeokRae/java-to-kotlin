@@ -3,7 +3,7 @@ package com.example.travelator.collections.version2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class MutableJavaListTest {
+class SomeJavaCodeTest {
 	
 	@DisplayName("컴파일 자체가 안됨")
 	@Test
