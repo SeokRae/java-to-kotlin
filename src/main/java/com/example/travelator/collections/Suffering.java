@@ -21,6 +21,6 @@ public class Suffering {
 	}
 	
 	private static Location getDepartsFrom(List<Journey> route) {
-		return null;
+		return route.get(0).getDepartsFrom();
 	}
 }
