@@ -2,6 +2,8 @@ package com.example.travelator.collections;
 
 import java.util.List;
 
+import static java.util.Comparator.comparing;
+
 public class Suffering {
 	
 	public static int sufferScoreFor(
@@ -16,8 +18,13 @@ public class Suffering {
 		return 0;
 	}
 	
-	private static List<Journey> longestJourneysIn(List<Journey> route, int start) {
-		return null;
+	private static List<Journey> longestJourneysIn(
+		List<Journey> journeys,
+		int limit
+	) {
+		journeys.sort(comparing(Journey::getDuration).reversed());
+		int actualLimit = Math.min(journeys.size(), limit);
+		return journeys.subList(0, actualLimit);
 	}
 	
 	private static Location getDepartsFrom(List<Journey> route) {
