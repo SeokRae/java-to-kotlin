@@ -9,7 +9,7 @@ import com.example.travelator.beansToValue.LocalePicker
  * 가변 데이터에서 전형적으로 드러날 수 있는 복잡성 투성인 객체
  */
 class PreferencesView(
-    private var preferences: UserPreferences
+    private var preferences: UserPreferences,
 ) : View() {
     private val greetingPicker = GreetingPicker()
     private val localePicker = LocalePicker()

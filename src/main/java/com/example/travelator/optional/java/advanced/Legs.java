@@ -13,7 +13,7 @@ public class Legs {
 	}
 	
 	public static Optional<Leg> findLongestLegOver(List<Leg> legs, Duration duration) {
-		var longestLeg =  legs.stream()
+		var longestLeg = legs.stream()
 			.max(Comparator.comparing(Leg::getPlannedDuration));
 		if (longestLeg.isEmpty()) {
 			return Optional.empty();

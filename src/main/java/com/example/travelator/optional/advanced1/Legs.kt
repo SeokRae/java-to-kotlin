@@ -8,7 +8,7 @@ import kotlin.time.Duration
  */
 fun longestLegOver(
     legs: List<Leg>,
-    duration: Duration
+    duration: Duration,
 ): Leg? {
     var result: Leg? = null
     for (leg in legs) {

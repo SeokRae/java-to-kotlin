@@ -10,6 +10,5 @@ class SomeJavaCodeTest {
 	void testCase1() {
 		// given
 		// val list = MutableJavaList.mutableListOfStrings("a", "b", "c");
-		
 	}
 }

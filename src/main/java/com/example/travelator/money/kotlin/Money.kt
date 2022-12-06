@@ -9,11 +9,11 @@ class Money
  */
 private constructor(
     val amount: BigDecimal,
-    val currency: Currency
+    val currency: Currency,
 ) {
     override fun equals(other: Any?): Boolean {
-        if(this === other) return true
-        if(other == null || javaClass != other.javaClass) return false
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
         val money = other as Money
         return amount == money.amount && currency == money.currency
     }

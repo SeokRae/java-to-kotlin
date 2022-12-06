@@ -1,5 +1,6 @@
 package com.example.travelator.beansToValue;
 
 public class View {
-    public void show() {}
+	public void show() {
+	}
 }

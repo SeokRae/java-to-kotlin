@@ -8,7 +8,7 @@ import kotlin.time.Duration
  */
 fun longestLegOver(
     legs: List<Leg>,
-    duration: Duration
+    duration: Duration,
 ): Leg? =
     /**
      * ?.는 수신 객체가 null이면 null로 평가, 그렇지 않으면 let 블록으로 가장 긴 구간을 전달

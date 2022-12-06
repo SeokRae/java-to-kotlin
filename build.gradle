@@ -34,6 +34,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
+tasks.withType(KotlinCompile) {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+        javaParameters = true
+        freeCompilerArgs = ["-Xjvm-default=all"]
+    }
+}
 
 test {
     useJUnitPlatform {
@@ -44,10 +51,3 @@ test {
     }
 }
 
-tasks.withType(KotlinCompile) {
-    kotlinOptions {
-        jvmTarget = "11"
-        javaParameters = true
-        freeCompilerArgs = ["-Xjvm-default=all"]
-    }
-}

@@ -11,8 +11,8 @@ import java.util.*
  * 결론, 가변 데이터 클래스를 정의하지 말라
  */
 data class UserPreferences
-(
+    (
     var greeting: String,
     var locale: Locale,
-    var currency: Currency
+    var currency: Currency,
 )

@@ -1,7 +1,7 @@
 package com.example.travelator.beansToValue.kotlin.version1
 
 class Application(
-    private var preferences: UserPreferences
+    private var preferences: UserPreferences,
 ) {
     fun showWelcome() {
         WelcomeView(preferences).show()

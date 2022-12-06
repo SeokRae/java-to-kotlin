@@ -4,7 +4,7 @@ import java.util.*
 
 class EmailAddress(
     val localPart: String,
-    val domain: String
+    val domain: String,
 ) {
 
     override fun equals(o: Any?): Boolean {

@@ -8,7 +8,7 @@ import kotlin.time.Duration
  */
 fun longestLegOver(
     legs: List<Leg>,
-    duration: Duration
+    duration: Duration,
 ): Leg? {
     val longestLeg = legs.maxByOrNull(Leg::plannedDuration)
     return when {

@@ -1,6 +1,5 @@
 package com.example.travelator.optional.java;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
