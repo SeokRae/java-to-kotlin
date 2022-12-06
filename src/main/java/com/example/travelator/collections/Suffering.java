@@ -8,7 +8,7 @@ public class Suffering {
 		// 경로를 표현
 		List<Journey> route
 	) {
-		List<Journey> longestJourneys = longestJourneys(route, 3);
+		List<Journey> longestJourneys = longestJourneysIn(route, 3);
 		return sufferScore(longestJourneys, getDepartsFrom(route));
 	}
 	
@@ -16,7 +16,7 @@ public class Suffering {
 		return 0;
 	}
 	
-	private static List<Journey> longestJourneys(List<Journey> route, int start) {
+	private static List<Journey> longestJourneysIn(List<Journey> route, int start) {
 		return null;
 	}
 	
