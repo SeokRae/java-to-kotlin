@@ -1,4 +1,4 @@
-package com.example.travelator.collections;
+package com.example.travelator.collections.version1;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
