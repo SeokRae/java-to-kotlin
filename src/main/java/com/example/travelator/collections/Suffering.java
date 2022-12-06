@@ -8,9 +8,8 @@ public class Suffering {
 		// 경로를 표현
 		List<Journey> route
 	) {
-		Location start = getDepartsFrom(route);
 		List<Journey> longestJourneys = longestJourneys(route, 3);
-		return sufferScore(longestJourneys, start);
+		return sufferScore(longestJourneys, getDepartsFrom(route));
 	}
 	
 	private static int sufferScore(List<Journey> longestJourneys, Location start) {
