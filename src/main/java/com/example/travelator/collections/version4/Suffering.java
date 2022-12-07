@@ -11,14 +11,16 @@ public class Suffering {
 		// 경로를 표현
 		List<Journey> route
 	) {
-		List<Journey> longestJourneys = longestJourneysIn(route, 3);
-		return sufferScore(longestJourneys, getDepartsFrom(route));
+		return sufferScore(
+			longestJourneysIn(route, 3),
+			getDepartsFrom(route));
 	}
 	
 	private static List<Journey> longestJourneysIn(
 		List<Journey> journeys,
 		int limit
 	) {
+		// 경로를 길이 순으로 정렬
 		var actualLimit = Math.min(journeys.size(), limit);
 		return sorted(
 			journeys,
@@ -32,16 +34,19 @@ public class Suffering {
 	
 	public static List<List<Journey>> routesToShowFor(String itineraryId) {
 		var routes = routesFor(itineraryId);
-		removeUnbearableRoutes(routes);
+		routes = removeUnbearableRoutes(routes);
+		return routes;
+	}
+	
+	private static List<List<Journey>> removeUnbearableRoutes(
+		List<List<Journey>> routes
+	) {
+		routes.removeIf(route -> sufferScoreFor(route) > 10);
 		return routes;
 	}
 	
 	private static List<List<Journey>> routesFor(String itineraryId) {
 		return List.of();
-	}
-	
-	private static void removeUnbearableRoutes(List<List<Journey>> routes) {
-		routes.removeIf(route -> sufferScoreFor(route) > 10);
 	}
 	
 	private static int sufferScore(
