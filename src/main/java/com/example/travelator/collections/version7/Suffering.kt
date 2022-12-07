@@ -1,7 +1,6 @@
-package com.example.travelator.collections.version6
+package com.example.travelator.collections.version7
 
-import com.example.travelator.collections.version6.Other.SOME_COMPLICATED_RESULT
-import java.util.Comparator.comparing
+import com.example.travelator.collections.version7.Other.SOME_COMPLICATED_RESULT
 
 object Suffering {
     @JvmStatic
@@ -19,14 +18,8 @@ object Suffering {
     fun longestJourneysIn(
         journeys: List<Journey>,
         limit: Int,
-    ): List<Journey> {
-        // 경로를 길이 순으로 정렬
-        val actualLimit = Math.min(journeys.size, limit)
-        return Collections.sorted(
-            journeys,
-            comparing { obj: Journey -> obj.duration }.reversed()
-        ).subList(0, actualLimit)
-    }
+    ): List<Journey> = journeys.sortedByDescending { it.duration }
+        .take(limit)
 
     /**
      * 데이터를 제 자리에서 변경하는 코드 -> 새로운 값을 계산하고 참조가 이 새 값을 가리키게 하는 코드로 변경
