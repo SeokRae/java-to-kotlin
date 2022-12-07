@@ -7,6 +7,9 @@ public class Application {
 		this.preferences = preferences;
 	}
 	
+	/**
+	 * preferences 가 아니라 this를 넘겨야 함!!!!
+	 */
 	public void showWelcome() {
 		new WelcomeView(preferences).show();
 	}

@@ -15,6 +15,11 @@ public class PreferencesView extends View {
 	private final LocalePicker localePicker = new LocalePicker();
 	private final CurrencyPicker currencyPicker = new CurrencyPicker();
 	
+	/**
+	 * 속성 값을 초기화
+	 *
+	 * @param preferences
+	 */
 	public PreferencesView(UserPreferences preferences) {
 		this.preferences = preferences;
 	}
@@ -26,6 +31,9 @@ public class PreferencesView extends View {
 		super.show();
 	}
 	
+	/**
+	 * 속성 값 변경 메서드들
+	 */
 	protected void onGreetingChange() {
 		preferences.setGreeting(greetingPicker.getGreeting());
 	}
