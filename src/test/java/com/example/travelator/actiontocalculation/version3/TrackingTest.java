@@ -36,7 +36,7 @@ class TrackingTest {
 		Trip diwaliTrip = givenATrip("cust1", "Diwali", "2022-11-13", "2022-11-15", BOOKED);
 		givenATrip("cust1", "Christmas", "2022-12-24", "2022-11-16", BOOKED);
 		
-		Optional<Trip> actual = tracking.currentTripFor("cust1", anInstant());
+		Optional<Trip> actual = tracking.currentTripFor("cust1", diwaliTrip.getPlannedStartTime().toInstant());
 		
 		assertThat(actual).isEqualTo(Optional.of(diwaliTrip));
 	}
