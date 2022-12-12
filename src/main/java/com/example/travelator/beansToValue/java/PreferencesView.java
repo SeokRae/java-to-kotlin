@@ -17,8 +17,8 @@ public class PreferencesView extends View {
 	
 	/**
 	 * 속성 값을 초기화
-	 *
-	 * @param preferences
+	 * <p>
+	 * 하지만 Wrapper 클래스만 알고 있는 것이 좋다.
 	 */
 	public PreferencesView(UserPreferences preferences) {
 		this.preferences = preferences;
