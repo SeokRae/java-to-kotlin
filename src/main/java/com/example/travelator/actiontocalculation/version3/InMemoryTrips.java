@@ -1,29 +1,35 @@
 package com.example.travelator.actiontocalculation.version3;
 
 import java.time.Clock;
-import java.util.Optional;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 
 import static java.util.stream.Collectors.toSet;
 
 public class InMemoryTrips implements Trips {
-	private final Set<Trip> trips;
+	private final Map<String, Set<Trip>> trips;
 	private final Clock clock;
 	
-	public InMemoryTrips(Set<Trip> trips, Clock clock) {
-		this.trips = trips;
+	public InMemoryTrips(Clock clock) {
+		this.trips = new HashMap<>();
 		this.clock = clock;
 	}
 	
+	void addTrip(Trip trip) {
+		var existingTrips = trips.getOrDefault(trip.getCustomerId(), new LinkedHashSet<>());
+		existingTrips.add(trip);
+		trips.putIfAbsent(trip.getCustomerId(), existingTrips);
+//		trips.computeIfAbsent(trip.getCustomerId(), (id) -> new LinkedHashSet<>()).add(trip);
+	}
+	
 	@Override
-	public Set<Trip> currentTripsFor(String customerId) {
-		var now = clock.instant();
+	public Set<Trip> currentTripsFor(String customerId, Instant at) {
 		return tripsFor(customerId).stream()
-			.filter(trip -> trip.isPlannedToBeActiveAt(now))
+			.filter(trip -> trip.isPlannedToBeActiveAt(at))
 			.collect(toSet());
 	}
 	
-	private Optional<Trip> tripsFor(String customerId) {
-		return null;
+	private Collection<Trip> tripsFor(String customerId) {
+		return trips.getOrDefault(customerId, Collections.emptySet());
 	}
 }
