@@ -1,7 +1,6 @@
 package com.example.travelator.actiontocalculation.version3;
 
 import java.time.Clock;
-import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;
 
@@ -18,11 +17,9 @@ public class InMemoryTrips implements Trips {
 	
 	@Override
 	public Set<Trip> currentTripsFor(String customerId) {
+		var now = clock.instant();
 		return tripsFor(customerId).stream()
-			.filter(trip -> {
-				Instant now = clock.instant();
-				return trip.isPlannedToBeActiveAt(now);
-			})
+			.filter(trip -> trip.isPlannedToBeActiveAt(now))
 			.collect(toSet());
 	}
 	
