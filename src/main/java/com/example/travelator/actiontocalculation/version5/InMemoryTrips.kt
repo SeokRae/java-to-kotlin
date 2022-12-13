@@ -1,32 +1,21 @@
 package com.example.travelator.actiontocalculation.version5
 
-import java.time.Clock
 import java.time.Instant
-import java.util.stream.Collectors
 
-class InMemoryTrips(clock: Clock) : Trips {
-    private val trips: MutableMap<String, MutableSet<Trip>>
-    private val clock: Clock
+class InMemoryTrips : Trips {
 
-    init {
-        trips = HashMap()
-        this.clock = clock
-    }
+    private val trips: MutableMap<String, MutableSet<Trip>> = mutableMapOf()
 
     fun addTrip(trip: Trip) {
-        val existingTrips = trips.getOrDefault(trip.customerId, LinkedHashSet())
+        val existingTrips = trips.getOrDefault(trip.customerId, mutableSetOf())
         existingTrips.add(trip)
-        trips.putIfAbsent(trip.customerId, existingTrips)
-        //		trips.computeIfAbsent(trip.getCustomerId(), (id) -> new LinkedHashSet<>()).add(trip);
+        trips[trip.customerId] = existingTrips
     }
 
-    override fun currentTripsFor(customerId: String, at: Instant): Set<Trip> {
-        return tripsFor(customerId).stream()
-            .filter { trip: Trip -> trip.isPlannedToBeActiveAt(at) }
-            .collect(Collectors.toSet())
-    }
+    override fun tripsFor(customerId: String) = trips.getOrDefault(customerId, emptySet())
 
-    private fun tripsFor(customerId: String): Collection<Trip> {
-        return trips.getOrDefault(customerId, emptySet())
-    }
+    override fun currentTripsFor(customerId: String, at: Instant): Set<Trip> =
+        tripsFor(customerId)
+            .filter { it.isPlannedToBeActiveAt(at) }
+            .toSet()
 }
