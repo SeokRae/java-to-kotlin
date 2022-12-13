@@ -6,6 +6,9 @@ import java.time.Instant;
 
 import static java.net.HttpURLConnection.*;
 
+/**
+ * 아직 단위 테스트 할 수 없다.
+ */
 public class CurrentTripsHandler {
 	private final ITrackTrips tracking;
 	private final ObjectMapper objectMapper = new ObjectMapper();
@@ -23,7 +26,8 @@ public class CurrentTripsHandler {
 			}
 			var currentTrip = tracking.currentTripFor(
 				customerId.get(),
-				Instant.now());
+				Instant.now() // 안에서 생성하면 테스트를 못함
+			);
 			
 			return currentTrip.isPresent() ?
 				new Response(HTTP_OK, objectMapper.writeValueAsString(currentTrip))
