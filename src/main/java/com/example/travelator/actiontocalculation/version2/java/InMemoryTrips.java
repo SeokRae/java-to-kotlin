@@ -18,11 +18,13 @@ public class InMemoryTrips implements Trips {
 	@Override
 	public Set<Trip> currentTripsFor(String customerId) {
 		return tripsFor(customerId).stream()
-			.filter((trip) -> trip.isPlannedToBeActiveAt(clock.instant()))
+			.filter(trip -> trip.isPlannedToBeActiveAt(clock.instant()))
 			.collect(toSet());
 	}
 	
 	private Optional<Trip> tripsFor(String customerId) {
-		return null;
+		return trips.stream()
+			.filter(trip -> trip.getCustomerId().equals(customerId))
+			.findFirst();
 	}
 }

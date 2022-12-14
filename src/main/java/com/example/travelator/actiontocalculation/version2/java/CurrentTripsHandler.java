@@ -12,7 +12,7 @@ public class CurrentTripsHandler {
 		this.tracking = tracking;
 	}
 	
-	public Response hanlde(Request request) {
+	public Response handler(Request request) {
 		try {
 			var customerId = request.getQueryParam("customerId").stream().findFirst();
 			if (customerId.isEmpty()) {
