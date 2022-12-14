@@ -2,6 +2,8 @@ package com.example.travelator.actiontocalculation.version3;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.Instant;
+
 import static java.net.HttpURLConnection.*;
 
 public class CurrentTripsHandler {
@@ -12,13 +14,13 @@ public class CurrentTripsHandler {
 		this.tracking = tracking;
 	}
 	
-	public Response handler(Request request) {
+	public Response handle(Request request) {
 		try {
 			var customerId = request.getQueryParam("customerId").stream().findFirst();
 			if (customerId.isEmpty()) {
 				return new Response(HTTP_BAD_REQUEST);
 			}
-			var currentTrip = tracking.currentTripFor(customerId.get(), null);
+			var currentTrip = tracking.currentTripFor(customerId.get(), Instant.now());
 			
 			return currentTrip.isPresent() ?
 				new Response(HTTP_OK, objectMapper.writeValueAsString(currentTrip))
