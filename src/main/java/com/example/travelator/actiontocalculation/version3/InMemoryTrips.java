@@ -16,7 +16,7 @@ public class InMemoryTrips implements Trips {
 	}
 	
 	void addTrip(Trip trip) {
-		var existingTrips = trips.getOrDefault(trip.getCustomerId(), new LinkedHashSet<>());
+		var existingTrips = trips.getOrDefault(trip.getCustomerId(), new LinkedHashSet<>(10));
 		existingTrips.add(trip);
 		trips.putIfAbsent(trip.getCustomerId(), existingTrips);
 //		trips.computeIfAbsent(trip.getCustomerId(), (id) -> new LinkedHashSet<>()).add(trip);
