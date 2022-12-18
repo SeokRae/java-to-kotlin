@@ -1,5 +1,8 @@
-package com.example.travelator._8statictotoplevelfunction.origin
+package com.example.travelator._8statictotoplevelfunction.origin.kotlin
 
+import com.example.travelator._8statictotoplevelfunction.origin.HasPrice
+import com.example.travelator._8statictotoplevelfunction.origin.HasRating
+import com.example.travelator._8statictotoplevelfunction.origin.HasRelevance
 import java.util.Comparator.comparing
 import java.util.Comparator.comparingDouble
 
