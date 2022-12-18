@@ -20,7 +20,10 @@ public class CurrentTripsHandler {
 			if (customerId.isEmpty()) {
 				return new Response(HTTP_BAD_REQUEST);
 			}
-			var currentTrip = tracking.currentTripFor(customerId.get(), Instant.now());
+			var currentTrip = tracking.currentTripFor(
+				customerId.get(),
+				// 해당 메서드가 동작이라는 것을 암시하는 시간생성 관련 값
+				Instant.now());
 			
 			return currentTrip.isPresent() ?
 				new Response(HTTP_OK, objectMapper.writeValueAsString(currentTrip))

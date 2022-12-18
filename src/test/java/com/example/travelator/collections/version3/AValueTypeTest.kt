@@ -27,7 +27,7 @@ class AValueTypeTest {
         """
     )
     @Test
-    fun testCase2() {
+    fun `test case2`() {
         // given
         val aList: List<String> = SomeJavaCode.mutableListOfStrings("0", "1", "2") // 가변
         val holdState = AValueType(aList)
@@ -60,5 +60,6 @@ class AValueTypeTest {
         assertThat(aList[0]).isEqualTo("banana") // 불변 컬렉션의 0번 인덱스의 값이 banana로 변경되었네? -> 책에서 의도한 불변 컬렉션의 특성이 깨짐
 
         assertThat(holdState.first).isEqualTo(holdState.strings.first())
+//        assertEquals( holdState.first, holdState.strings.first())
     }
 }
