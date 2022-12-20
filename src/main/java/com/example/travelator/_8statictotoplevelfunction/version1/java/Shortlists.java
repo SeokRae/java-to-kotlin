@@ -28,11 +28,11 @@ public class Shortlists {
 	}
 	
 	public static Comparator<HasRating> byRating() {
-		return Comparator.comparingDouble(HasRating::getRating).reversed();
+		return Comparator.comparingDouble(HasRating::rating).reversed();
 	}
 	
 	public static Comparator<HasPrice> byPriceLowToHigh() {
-		return comparing(HasPrice::getPrice);
+		return comparing(HasPrice::price);
 	}
 	
 }

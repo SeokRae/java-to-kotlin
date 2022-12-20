@@ -38,27 +38,13 @@ class Shortlists147PageTest {
 //		Shortlists.sorted(hotels, Shortlists.byValue());
 	}
 	
-	static final class HotelSearchResult implements HasRelevance, HasPrice, HasRating {
-		private final String name;
-		private final double relevance;
-		private final int price;
-		private final double rating;
+	record HotelSearchResult(
+		String name,
+		double relevance,
+		int price,
+		double rating
+	) implements HasRelevance, HasPrice, HasRating {
 		
-		HotelSearchResult(String name, double relevance, int price, double rating) {
-			this.name = name;
-			this.relevance = relevance;
-			this.price = price;
-			this.rating = rating;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		
-		@Override
-		public int getPrice() {
-			return price;
-		}
 		
 		@Override
 		public double getRating() {
@@ -68,6 +54,11 @@ class Shortlists147PageTest {
 		@Override
 		public double getRelevance() {
 			return relevance;
+		}
+		
+		@Override
+		public int getPrice() {
+			return price;
 		}
 	}
 }
