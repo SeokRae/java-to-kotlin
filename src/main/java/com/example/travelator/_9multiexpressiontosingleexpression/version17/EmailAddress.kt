@@ -9,19 +9,20 @@ data class EmailAddress(
     companion object {
         @JvmStatic
         fun parse(value: String): EmailAddress = // parse 단일식 함수로 변경
-            value.split("@").let { (leftPart, rightPart) ->
+            value.split('@').let { (leftPart, rightPart) ->
                 EmailAddress(leftPart, rightPart)
             }
 
-        // 추출된 메서드는 Pair를 반환되도록 처리됨
-        private fun String.split(divider: Char): Pair<String, String> {
-            val atIndex = lastIndexOf(divider)
-            require(!(atIndex < 1 || atIndex == length - 1)) {
-                "EmailAddress must be two parts seperated by @"
-            }
-            val leftPart = substring(0, atIndex)
-            val rightPart = substring(atIndex + 1)
-            return Pair(leftPart, rightPart)
-        }
     }
 }
+
+// when이 더 깔끔하다고 하지 않았나. version8에서는 when을 사용했었다.
+private fun String.split(divider: Char): Pair<String, String> =
+    lastIndexOf(divider).let { index ->
+        // require 보다 if 문으로 하는게 좋다 하지 않았나
+        require(index >= 1 && index != length - 1) {
+            "string must be two non-empty parts seperated by $divider"
+        }
+        // to 문법은 또 뭔데
+        substring(0, index) to substring(index + 1)
+    }
