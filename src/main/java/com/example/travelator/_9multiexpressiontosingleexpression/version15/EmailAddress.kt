@@ -9,7 +9,7 @@ data class EmailAddress(
     companion object {
         @JvmStatic
         fun parse(value: String): EmailAddress {
-            val (leftPart, rightPart) = value.split("@")
+            val (leftPart, rightPart) = value.split('@')
             // 로컬 변수로 분리 후 메서드로 추출
             return EmailAddress(
                 leftPart,
