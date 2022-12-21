@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.example.travelator._8statictotoplevelfunction.version2.kotlin.Shortlists.sorted;
+import static java.util.Comparator.comparing;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 class Shortlists147PageTest {
 	
 	private List<HotelSearchResult> hotels;
@@ -36,6 +40,16 @@ class Shortlists147PageTest {
 	void testCase1() {
 
 //		Shortlists.sorted(hotels, Shortlists.byValue());
+	}
+	
+	@Test
+	void testCase2() {
+		
+		List<Integer> sorted = sorted(List.of(1, 2, 3, 4), comparing(Integer::intValue));
+		
+		List<Integer> integers = List.of(1, 2, 3, 4);
+		
+		assertThat(sorted).isEqualTo(integers);
 	}
 	
 	record HotelSearchResult(
