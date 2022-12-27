@@ -9,12 +9,12 @@ import java.util.stream.Stream
  * @JvmStatic 까지는 만들지 못함
  */
 object Shortlists {
-    @JvmStatic
-    fun <T> sorted(shortlist: List<Int>, ordering: Comparator<in T>?): List<T> {
-        return shortlist.stream()
-            .sorted(ordering)
-            .toList()
-    }
+//    @JvmStatic
+//    fun <T> sorted(shortlist: List<Int>, ordering: Comparator<in T>): List<T> {
+//        return shortlist.stream()
+//            .sorted(ordering)
+//            .toList()
+//    }
 
     @JvmStatic
     fun <T> removeItemAt(shortlist: List<T>, index: Int): List<T> {
