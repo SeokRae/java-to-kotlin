@@ -10,7 +10,7 @@ import java.util.stream.Stream
  */
 object Shortlists {
     @JvmStatic
-    fun <T> sorted(shortlist: List<T>, ordering: Comparator<in T>?): List<T> {
+    fun <T> sorted(shortlist: List<Int>, ordering: Comparator<in T>?): List<T> {
         return shortlist.stream()
             .sorted(ordering)
             .toList()
