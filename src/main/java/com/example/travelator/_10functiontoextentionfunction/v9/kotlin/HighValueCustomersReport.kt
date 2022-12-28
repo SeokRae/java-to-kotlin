@@ -10,8 +10,7 @@ import java.util.*
  */
 @Throws(IOException::class)
 fun generate(reader: Reader, writer: Writer) {
-    val valuableCustomers = reader
-        .withoutHeader()
+    val valuableCustomers = withoutHeader(reader.readLines())
         .map(String::toCustomerData)
         .filter { it.score >= 10 }
         .sortedBy(CustomerData::score) // it을 명시하지 않고, CustomerData::score를 사용하는 이유?
@@ -23,10 +22,7 @@ fun generate(reader: Reader, writer: Writer) {
     writer.append(valuableCustomers.summarised())
 }
 
-/**
- * 메서드 추출 이후 파라미터 수신객체로 변환하여 코드의 가독성을 높임
- */
-private fun Reader.withoutHeader() = readLines()
+private fun withoutHeader(list: List<String>) = list
     .drop(1)
 
 fun String.toCustomerData(): CustomerData =
