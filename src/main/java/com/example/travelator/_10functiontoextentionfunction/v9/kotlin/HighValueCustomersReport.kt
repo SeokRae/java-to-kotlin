@@ -6,7 +6,8 @@ import java.io.Writer
 import java.util.*
 
 /**
- * 널 가능성이었던 Reader를 널 불가능성으로 변경
+ * 확장 함수를 적용할 만한 파라미터가 없기 때문에 generate는 그대로 둔다.
+ * 그 외에는 단일식 확장 함수로 변경
  */
 @Throws(IOException::class)
 fun generate(reader: Reader, writer: Writer) {
