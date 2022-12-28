@@ -16,14 +16,10 @@ fun generate(reader: Reader, writer: Writer) {
 
     writer.append("ID\tName\tSpend\n")
     for (customerData in valuableCustomers) {
-        writer.appendLine(customerData.lineFor())
+        writer.appendLine(customerData.outputLine)
     }
     writer.append(valuableCustomers.summarised())
 }
-
-private fun List<String>.toValuableCustomers() = withoutHeader()
-    .map(String::toCustomerData)
-    .filter { it.score >= 10 }
 
 fun String.toCustomerData(): CustomerData =
     split("\t".toRegex()).let { parts ->
@@ -36,7 +32,21 @@ fun String.toCustomerData(): CustomerData =
         )
     }
 
+private fun List<String>.toValuableCustomers() = withoutHeader()
+    .map(String::toCustomerData)
+    .filter { it.score >= 10 }
+
 private fun List<String>.withoutHeader() = drop(1)
+
+/**
+ * 1. 코틀린의 함수를 활용
+ * 2. let을 통해 람다식으로 변환
+ * 3. return을 convert expression to body로 단일식으로 변환
+ */
+private fun List<CustomerData>.summarised(): String =
+    // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
+    sumOf { it.spend }
+        .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
 
 /**
  * 1. convert function to property
@@ -59,16 +69,7 @@ private fun Double.toMoneyString(): String = this.formattedAs("%#.2f")
 /**
  * 1. convert function to property
  * 2. convert expression to body
+ * 3. convert function to property
  */
-private fun CustomerData.lineFor(): String =
-    "$id\t$marketingName\t${spend.toMoneyString()}"
-
-/**
- * 1. 코틀린의 함수를 활용
- * 2. let을 통해 람다식으로 변환
- * 3. return을 convert expression to body로 단일식으로 변환
- */
-private fun List<CustomerData>.summarised(): String =
-    // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
-    sumOf { it.spend }
-        .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
+private val CustomerData.outputLine: String
+    get() = "$id\t$marketingName\t${spend.toMoneyString()}"
