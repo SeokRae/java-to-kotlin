@@ -7,7 +7,7 @@ import java.io.Writer
 class HighValueCustomersReportTest {
     @Test
     fun testCase1() {
-        HighValueCustomersReport.generate(
+        generate(
             Reader.nullReader(), Writer.nullWriter()
         )
     }
