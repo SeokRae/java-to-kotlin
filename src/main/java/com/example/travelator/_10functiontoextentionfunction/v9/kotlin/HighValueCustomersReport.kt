@@ -11,9 +11,7 @@ import java.util.*
 @Throws(IOException::class)
 fun generate(reader: Reader, writer: Writer) {
     val valuableCustomers = reader.readLines()
-        .withoutHeader()
-        .map(String::toCustomerData)
-        .filter { it.score >= 10 }
+        .toValuableCustomers()
         .sortedBy(CustomerData::score) // it을 명시하지 않고, CustomerData::score를 사용하는 이유?
 
     writer.append("ID\tName\tSpend\n")
@@ -22,6 +20,10 @@ fun generate(reader: Reader, writer: Writer) {
     }
     writer.append(valuableCustomers.summarised())
 }
+
+private fun List<String>.toValuableCustomers() = withoutHeader()
+    .map(String::toCustomerData)
+    .filter { it.score >= 10 }
 
 fun String.toCustomerData(): CustomerData =
     split("\t".toRegex()).let { parts ->
