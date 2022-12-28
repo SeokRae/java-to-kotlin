@@ -28,8 +28,7 @@ object HighValueCustomersReport {
      * 수신객체의 확장 함수 형식으로 변환 후 메서드명을 수정
      */
     @JvmStatic
-    private fun String.toCustomerData(): CustomerData {
-        // let. 을 통해 람다로 호출
+    private fun String.toCustomerData(): CustomerData = // let. 을 통해 람다로 호출
         split("\t".toRegex()).let { parts ->
             return CustomerData(
                 parts[0],
@@ -40,7 +39,6 @@ object HighValueCustomersReport {
                 spend = if (parts.size == 4) 0.0 else parts[4].toDouble()
             )
         }
-    }
 
     /**
      * 1. 코틀린의 함수를 활용
