@@ -6,6 +6,33 @@ import java.io.Reader
 import java.io.Writer
 import java.util.*
 
+@Throws(IOException::class)
+fun generate(reader: Reader?, writer: Writer) {
+    val valuableCustomers = BufferedReader(reader).lines()
+        .skip(1)
+        .map { line: String -> line.toCustomerData() }
+        .filter { (_, _, _, score): CustomerData -> score >= 10 }
+        .sorted(Comparator.comparing { (_, _, _, score) -> score })
+        .toList()
+    writer.append("ID\tName\tSpend\n")
+    for (customerData in valuableCustomers) {
+        writer.append(customerData.lineFor()).append("\n")
+    }
+    writer.append(valuableCustomers.summarised())
+}
+
+fun String.toCustomerData(): CustomerData {
+    split("\t".toRegex()).let { parts ->
+        return CustomerData(
+            id = parts[0],
+            givenName = parts[1],
+            familyName = parts[2],
+            score = parts[3].toInt(),
+            spend = if (parts.size == 4) 0.0 else parts[4].toDouble()
+        )
+    }
+}
+
 /**
  * 1. convert function to property
  * 2. convert expression to body
@@ -40,30 +67,3 @@ private fun List<CustomerData>.summarised(): String =
     // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
     sumOf { it.spend }
         .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
-
-fun String.toCustomerData(): CustomerData {
-    split("\t".toRegex()).let { parts ->
-        return CustomerData(
-            id = parts[0],
-            givenName = parts[1],
-            familyName = parts[2],
-            score = parts[3].toInt(),
-            spend = if (parts.size == 4) 0.0 else parts[4].toDouble()
-        )
-    }
-}
-
-@Throws(IOException::class)
-fun generate(reader: Reader?, writer: Writer) {
-    val valuableCustomers = BufferedReader(reader).lines()
-        .skip(1)
-        .map { line: String -> line.toCustomerData() }
-        .filter { (_, _, _, score): CustomerData -> score >= 10 }
-        .sorted(Comparator.comparing { (_, _, _, score) -> score })
-        .toList()
-    writer.append("ID\tName\tSpend\n")
-    for (customerData in valuableCustomers) {
-        writer.append(customerData.lineFor()).append("\n")
-    }
-    writer.append(valuableCustomers.summarised())
-}
