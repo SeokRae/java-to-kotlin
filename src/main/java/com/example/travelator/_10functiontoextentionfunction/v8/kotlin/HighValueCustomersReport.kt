@@ -42,12 +42,15 @@ object HighValueCustomersReport {
         }
     }
 
-    private fun summaryFor(valuableCustomers: List<CustomerData>): String {
-        val total = valuableCustomers.stream()
-            .mapToDouble({ (_, _, _, _, spend) -> spend })
-            .sum()
-        return "\tTOTAL\t" + total.toMoneyString()
-    }
+    /**
+     * 1. 코틀린의 함수를 활용
+     * 2. let을 통해 람다식으로 변환
+     * 3. return을 convert expression to body로 단일식으로 변환
+     */
+    private fun summaryFor(valuableCustomers: List<CustomerData>): String =
+        // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
+        valuableCustomers.sumOf { it.spend }
+            .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
 
     /**
      * 1. convert function to property
