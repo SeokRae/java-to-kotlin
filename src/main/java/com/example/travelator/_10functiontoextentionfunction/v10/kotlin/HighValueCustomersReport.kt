@@ -1,4 +1,4 @@
-package com.example.travelator._10functiontoextentionfunction.v9.kotlin
+package com.example.travelator._10functiontoextentionfunction.v10.kotlin
 
 import java.io.IOException
 import java.io.Reader
@@ -18,7 +18,7 @@ fun generate(reader: Reader, writer: Writer) {
 
     writer.append("ID\tName\tSpend\n")
     for (customerData in valuableCustomers) {
-        writer.appendLine(customerData.lineFor())
+        writer.append(customerData.lineFor()).append("\n")
     }
     writer.append(valuableCustomers.summarised())
 }
