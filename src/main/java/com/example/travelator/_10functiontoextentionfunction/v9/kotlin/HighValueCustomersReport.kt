@@ -10,7 +10,8 @@ import java.util.*
  */
 @Throws(IOException::class)
 fun generate(reader: Reader, writer: Writer) {
-    val valuableCustomers = withoutHeader(reader.readLines())
+    val valuableCustomers = reader.readLines()
+        .withoutHeader()
         .map(String::toCustomerData)
         .filter { it.score >= 10 }
         .sortedBy(CustomerData::score) // it을 명시하지 않고, CustomerData::score를 사용하는 이유?
@@ -22,9 +23,6 @@ fun generate(reader: Reader, writer: Writer) {
     writer.append(valuableCustomers.summarised())
 }
 
-private fun withoutHeader(list: List<String>) = list
-    .drop(1)
-
 fun String.toCustomerData(): CustomerData =
     split("\t".toRegex()).let { parts ->
         return CustomerData(
@@ -35,6 +33,8 @@ fun String.toCustomerData(): CustomerData =
             spend = if (parts.size == 4) 0.0 else parts[4].toDouble()
         )
     }
+
+private fun List<String>.withoutHeader() = drop(1)
 
 /**
  * 1. convert function to property
