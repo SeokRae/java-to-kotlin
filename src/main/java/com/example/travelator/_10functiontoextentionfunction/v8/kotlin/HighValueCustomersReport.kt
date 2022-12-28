@@ -20,7 +20,7 @@ object HighValueCustomersReport {
         for (customerData in valuableCustomers) {
             writer.append(lineFor(customerData)).append("\n")
         }
-        writer.append(summaryFor(valuableCustomers))
+        writer.append(valuableCustomers.summarised())
     }
 
     /**
@@ -47,9 +47,9 @@ object HighValueCustomersReport {
      * 2. let을 통해 람다식으로 변환
      * 3. return을 convert expression to body로 단일식으로 변환
      */
-    private fun summaryFor(valuableCustomers: List<CustomerData>): String =
+    private fun List<CustomerData>.summarised(): String =
         // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
-        valuableCustomers.sumOf { it.spend }
+        sumOf { it.spend }
             .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
 
     /**
