@@ -18,12 +18,13 @@ object HighValueCustomersReport {
             .toList()
         writer.append("ID\tName\tSpend\n")
         for (customerData in valuableCustomers) {
-            writer.append(lineFor(customerData)).append("\n")
+            writer.append(customerData.lineFor()).append("\n")
         }
         writer.append(valuableCustomers.summarised())
     }
 
-    private fun String.toCustomerData(): CustomerData =
+    @JvmStatic
+    fun String.toCustomerData(): CustomerData {
         split("\t".toRegex()).let { parts ->
             return CustomerData(
                 id = parts[0],
@@ -33,39 +34,41 @@ object HighValueCustomersReport {
                 spend = if (parts.size == 4) 0.0 else parts[4].toDouble()
             )
         }
+    }
 
-    /**
-     * 1. 코틀린의 함수를 활용
-     * 2. let을 통해 람다식으로 변환
-     * 3. return을 convert expression to body로 단일식으로 변환
-     */
-    private fun List<CustomerData>.summarised(): String =
-        // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
-        sumOf { it.spend }
-            .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
-
-    /**
-     * 1. convert function to property
-     * 2. convert expression to body
-     */
-    private fun lineFor(customerData: CustomerData): String =
-        "${customerData.id}\t${customerData.marketingName}\t${customerData.spend.toMoneyString()}"
-
-    /**
-     * 1. convert parameter to receiver
-     * 2. convert expression to body
-     */
-    private fun Double.toMoneyString(): String = this.formattedAs("%#.2f")
-
-    /**
-     * 구체적인 변환 방식을 일반적인 변환 방식으로 변경
-     */
-    private fun Any?.formattedAs(format: String) = String.format(format, this)
-
-    /**
-     * 1. convert function to property
-     * 2. convert expression to body
-     */
-    private val CustomerData.marketingName: String
-        get() = "${familyName.uppercase()}, $givenName"
 }
+
+/**
+ * 1. convert function to property
+ * 2. convert expression to body
+ */
+private val CustomerData.marketingName: String
+    get() = "${familyName.uppercase()}, $givenName"
+
+/**
+ * 구체적인 변환 방식을 일반적인 변환 방식으로 변경
+ */
+private fun Any?.formattedAs(format: String) = String.format(format, this)
+
+/**
+ * 1. convert parameter to receiver
+ * 2. convert expression to body
+ */
+private fun Double.toMoneyString(): String = this.formattedAs("%#.2f")
+
+/**
+ * 1. convert function to property
+ * 2. convert expression to body
+ */
+private fun CustomerData.lineFor(): String =
+    "$id\t$marketingName\t${spend.toMoneyString()}"
+
+/**
+ * 1. 코틀린의 함수를 활용
+ * 2. let을 통해 람다식으로 변환
+ * 3. return을 convert expression to body로 단일식으로 변환
+ */
+private fun List<CustomerData>.summarised(): String =
+    // 책과는 다르게 sumByDouble을 사용하지 않고 sumOf를 사용하는군
+    sumOf { it.spend }
+        .let { total -> "\tTOTAL\t${total.toMoneyString()}" }
