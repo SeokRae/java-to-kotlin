@@ -11,4 +11,10 @@ data class PersonWithProperties(
     val fullName: String get() = "$givenName $familyName"
 
     fun age() = Period.between(dateOfBirth, LocalDate.now()).years
+
+    fun computeHash(): ByteArray = sumSlowHashOf(givenName, familyName, dateOfBirth.toString())
+
+    private fun sumSlowHashOf(givenName: String, familyName: String, toString: String): ByteArray {
+        TODO("Not yet implemented")
+    }
 }
