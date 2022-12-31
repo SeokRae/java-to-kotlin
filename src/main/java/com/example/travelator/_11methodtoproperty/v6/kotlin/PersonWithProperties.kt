@@ -14,6 +14,8 @@ data class PersonWithProperties(
 
     fun computeHash(): ByteArray = sumSlowHashOf(givenName, familyName, dateOfBirth.toString())
 
+    val hash: ByteArray = sumSlowHashOf(givenName, familyName, dateOfBirth.toString())
+
     private fun sumSlowHashOf(givenName: String, familyName: String, toString: String): ByteArray {
         TODO("Not yet implemented")
     }
