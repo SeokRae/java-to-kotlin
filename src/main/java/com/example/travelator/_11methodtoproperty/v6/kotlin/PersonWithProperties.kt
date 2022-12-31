@@ -14,6 +14,9 @@ data class PersonWithProperties(
 
     fun computeHash(): ByteArray = sumSlowHashOf(givenName, familyName, dateOfBirth.toString())
 
+    /**
+     * hash 접근 여부와 관계 없이 모든 인스턴스 생성이 느림
+     */
     val hash: ByteArray = sumSlowHashOf(givenName, familyName, dateOfBirth.toString())
 
     private fun sumSlowHashOf(givenName: String, familyName: String, toString: String): ByteArray {
