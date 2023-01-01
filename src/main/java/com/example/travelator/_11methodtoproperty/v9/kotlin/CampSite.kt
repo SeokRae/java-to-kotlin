@@ -1,35 +1,21 @@
-package com.example.travelator._11methodtoproperty.v9.kotlin;
+package com.example.travelator._11methodtoproperty.v9.kotlin
 
-import com.example.travelator._11methodtoproperty.v9.java.Address;
+import com.example.travelator._11methodtoproperty.v9.java.Address
 
-public class CampSite {
-	private final String id;
-	private final String name;
-	private final Address address;
-	
-	public CampSite(String id, String name, Address address) {
-		this.id = id;
-		this.name = name;
-		this.address = address;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public Address getAddress() {
-		return address;
-	}
-	// 계산된 프로퍼티
-	public String getCountryCode() {
-		return address.getCountryCode();
-	}
-	// 계산된 프로퍼티지만 컨벤션 관습이 지켜지지 않음
-	public String region() {
-		return address.getRegion();
-	}
+/**
+ * 필드가 뒷받침하는 프로퍼티는 생성자 프로퍼티가 됐고,
+ */
+data class CampSite(
+    val id: String,
+    val name: String,
+    val address: Address,
+) {
+    // 컨벤션이 지켜진 getter의 경우 생성자 프로퍼티로 변환 됨
+    val countryCode: String
+        get() = address.countryCode
+
+    // region은 프로퍼티라는 사실을 인식하지 못해서 단순 메서드로 취급해 변환하게 됨
+    fun region(): String {
+        return address.region
+    }
 }
