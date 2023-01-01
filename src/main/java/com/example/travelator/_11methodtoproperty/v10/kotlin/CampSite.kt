@@ -14,6 +14,6 @@ data class CampSite(
     val countryCode: String
         get() = address.countryCode
 
-    // convert expression to body 단일식으로 변환
+    // region 메서드를 프로퍼티로 변경한다는 것은 접근자 메서드 이름이 getRegion으로 바뀐다는 뜻
     val region: String get() = address.region
 }
