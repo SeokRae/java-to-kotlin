@@ -14,9 +14,6 @@ data class CampSite(
     val countryCode: String
         get() = address.countryCode
 
-    // convert function to property 변환하여 메서드 -> 생성자 프로퍼티로 변환
-    val region: String
-        get() {
-            return address.region
-        }
+    // convert expression to body 단일식으로 변환
+    val region: String get() = address.region
 }
