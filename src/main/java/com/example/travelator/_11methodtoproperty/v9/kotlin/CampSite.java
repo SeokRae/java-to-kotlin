@@ -1,4 +1,6 @@
-package com.example.travelator._11methodtoproperty.v9.java;
+package com.example.travelator._11methodtoproperty.v9.kotlin;
+
+import com.example.travelator._11methodtoproperty.v9.java.Address;
 
 public class CampSite {
 	private final String id;
