@@ -22,9 +22,7 @@ class Money private constructor(
     /**
      * replace with +
      */
-    fun add(that: Money): Money {
-        return this + that
-    }
+    fun add(that: Money): Money = this + that
 
     operator fun plus(that: Money): Money {
         require(currency == that.currency) {
