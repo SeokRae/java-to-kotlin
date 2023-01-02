@@ -13,7 +13,7 @@ class MoneyTest {
         val of = Money.of(BigDecimal("10.00"), Currency.getInstance("USD"))
 
         // when
-        val add = of.add(Money.of(BigDecimal("20.00"), Currency.getInstance("USD")))
+        val add = of.plus(Money.of(BigDecimal("20.00"), Currency.getInstance("USD")))
 
         // then
         assertThat(add).isEqualTo(Money.of(BigDecimal("30.00"), Currency.getInstance("USD")))
