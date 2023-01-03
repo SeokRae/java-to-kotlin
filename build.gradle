@@ -39,7 +39,7 @@ tasks.withType(KotlinCompile) {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17
         javaParameters = true
-        freeCompilerArgs = ["-Xjvm-default=all"]
+        freeCompilerArgs = ['-Xjvm-default=enable']
     }
 }
 
