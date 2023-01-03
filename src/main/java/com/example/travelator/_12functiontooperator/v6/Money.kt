@@ -34,8 +34,11 @@ class Money private constructor(
     companion object {
         @JvmStatic
         fun of(amount: BigDecimal, currency: Currency) =
-            invoke(amount, currency)
+            this(amount, currency)
 
+        /**
+         * 연산자 operator로 변경
+         */
         operator fun invoke(
             amount: BigDecimal,
             currency: Currency,
