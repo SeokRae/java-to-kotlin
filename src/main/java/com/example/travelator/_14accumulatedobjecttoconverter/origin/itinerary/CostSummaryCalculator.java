@@ -1,6 +1,5 @@
 package com.example.travelator._14accumulatedobjecttoconverter.origin.itinerary;
 
-import com.example.travelator._12functiontooperator.origin.itinerary.CostSummary;
 import com.example.travelator._14accumulatedobjecttoconverter.origin.money.ExchangeRates;
 import com.example.travelator._14accumulatedobjecttoconverter.origin.money.Money;
 

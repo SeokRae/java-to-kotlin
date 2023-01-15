@@ -1,4 +1,4 @@
-package com.example.travelator._14accumulatedobjecttoconverter.v1.iternerary
+package com.example.travelator._14accumulatedobjecttoconverter.v1.itinerary
 
 import com.example.travelator._14accumulatedobjecttoconverter.v1.Id
 
