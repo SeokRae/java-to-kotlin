@@ -1,7 +1,7 @@
 package com.example.travelator._12functiontooperator.origin.itinerary;
 
-import com.example.travelator._12functiontooperator.origin.money.CurrencyConversion;
-import com.example.travelator._12functiontooperator.origin.money.Money;
+import com.example.travelator._14accumulatedobjecttoconverter.origin.money.CurrencyConversion;
+import com.example.travelator._14accumulatedobjecttoconverter.origin.money.Money;
 
 import java.util.ArrayList;
 import java.util.Currency;
