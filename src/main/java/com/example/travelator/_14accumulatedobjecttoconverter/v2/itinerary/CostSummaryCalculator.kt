@@ -1,45 +1,31 @@
-package com.example.travelator._14accumulatedobjecttoconverter.v2.itinerary;
+package com.example.travelator._14accumulatedobjecttoconverter.v2.itinerary
 
-import com.example.travelator._14accumulatedobjecttoconverter.v2.money.ExchangeRates;
-import com.example.travelator._14accumulatedobjecttoconverter.v2.money.Money;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.money.ExchangeRates
+import com.example.travelator._14accumulatedobjecttoconverter.v2.money.Money
+import java.util.*
 
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.HashMap;
-import java.util.Map;
+class CostSummaryCalculator(
+    private val userCurrency: Currency,
+    private val exchangeRates: ExchangeRates,
+) {
+    private val currencyTotals = mutableMapOf<Currency, Money>()
+    fun addCost(cost: Money) {
+        currencyTotals.merge(cost.currency, cost, Money::add)
+    }
 
-import static java.util.Comparator.comparing;
+    fun summarise(): CostSummary {
+        val totals = ArrayList(currencyTotals.values)
+        // sort -> sortWith
+        totals.sortWith(Comparator.comparing { m: Money -> m.currency.currencyCode })
+        val summary = CostSummary(userCurrency)
 
-public class CostSummaryCalculator {
-	private final Currency userCurrency;
-	private final ExchangeRates exchangeRates;
-	private final Map<Currency, Money> currencyTotals = new HashMap<>();
-	
-	public CostSummaryCalculator(
-		Currency userCurrency,
-		ExchangeRates exchangeRates
-	) {
-		this.userCurrency = userCurrency;
-		this.exchangeRates = exchangeRates;
-	}
-	
-	public void addCost(Money cost) {
-		currencyTotals.merge(cost.getCurrency(), cost, Money::add);
-	}
-	
-	public CostSummary summarise() {
-		var totals = new ArrayList<>(currencyTotals.values());
-		totals.sort(comparing(m -> m.getCurrency().getCurrencyCode()));
-		
-		CostSummary summary = new CostSummary(userCurrency);
-		for (var total : totals) {
-			summary.addLine(exchangeRates.convert(total, userCurrency));
-		}
-		
-		return summary;
-	}
-	
-	public void reset() {
-		currencyTotals.clear();
-	}
+        for (total in totals) {
+            summary.addLine(exchangeRates.convert(total, userCurrency))
+        }
+        return summary
+    }
+
+    fun reset() {
+        currencyTotals.clear()
+    }
 }
