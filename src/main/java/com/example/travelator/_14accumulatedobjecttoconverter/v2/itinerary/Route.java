@@ -1,7 +1,7 @@
 package com.example.travelator._14accumulatedobjecttoconverter.v2.itinerary;
 
 
-import com.example.travelator._14accumulatedobjecttoconverter.v1.Location;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.Location;
 
 import java.time.Duration;
 import java.util.ArrayList;
