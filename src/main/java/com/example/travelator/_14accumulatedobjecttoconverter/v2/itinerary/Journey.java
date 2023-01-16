@@ -1,9 +1,9 @@
 package com.example.travelator._14accumulatedobjecttoconverter.v2.itinerary;
 
 
-import com.example.travelator._14accumulatedobjecttoconverter.v1.Id;
-import com.example.travelator._14accumulatedobjecttoconverter.v1.Location;
-import com.example.travelator._14accumulatedobjecttoconverter.v1.money.Money;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.Id;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.Location;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.money.Money;
 
 import java.time.ZonedDateTime;
 
