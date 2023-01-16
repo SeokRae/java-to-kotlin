@@ -20,9 +20,7 @@ class CostSummaryCalculator(
         }.map {
             exchangeRates.convert(it, userCurrency)
         }
-        return CostSummary(userCurrency).apply {
-            conversions.forEach { addLine(it) }
-        }
+        return CostSummary(userCurrency, conversions)
     }
 
     fun reset() {
