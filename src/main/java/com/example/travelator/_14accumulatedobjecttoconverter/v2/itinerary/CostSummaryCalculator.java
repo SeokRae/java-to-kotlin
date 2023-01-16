@@ -1,7 +1,7 @@
 package com.example.travelator._14accumulatedobjecttoconverter.v2.itinerary;
 
-import com.example.travelator._14accumulatedobjecttoconverter.v1.money.ExchangeRates;
-import com.example.travelator._14accumulatedobjecttoconverter.v1.money.Money;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.money.ExchangeRates;
+import com.example.travelator._14accumulatedobjecttoconverter.v2.money.Money;
 
 import java.util.ArrayList;
 import java.util.Currency;
