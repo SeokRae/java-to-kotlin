@@ -9,6 +9,7 @@ class CostSummaryCalculator(
     private val exchangeRates: ExchangeRates,
 ) {
     private val currencyTotals = mutableMapOf<Currency, Money>()
+
     fun addCost(cost: Money) {
         currencyTotals.merge(cost.currency, cost, Money::add)
     }

@@ -13,6 +13,14 @@ class CostSummary(userCurrency: Currency) {
 
     val lines: List<CurrencyConversion>
         get() = _lines.toList()
+
+    constructor(
+        userCurrency: Currency,
+        lines: List<CurrencyConversion>
+    ) : this(userCurrency) {
+        lines.forEach { addLine(it) }
+    }
+
     fun addLine(line: CurrencyConversion) {
         _lines.add(line)
         // add에서 plus로 변경하면 += 연산자를 사용할 수 있음
