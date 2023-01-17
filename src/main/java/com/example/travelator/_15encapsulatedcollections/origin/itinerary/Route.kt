@@ -1,7 +1,6 @@
-package travelator.itinerary
+package com.example.travelator._15encapsulatedcollections.origin.itinerary
 
-import com.example.travelator._15encapsulatedcollections.origin.itinerary.Journey
-import travelator.Location
+import com.example.travelator._15encapsulatedcollections.origin.Location
 import java.time.Duration
 
 typealias Route = List<Journey>

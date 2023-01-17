@@ -1,7 +1,4 @@
-package travelator.itinerary
-
-import com.example.travelator._15encapsulatedcollections.origin.itinerary.Itinerary
-import com.example.travelator._15encapsulatedcollections.origin.itinerary.TravelMethod
+package com.example.travelator._15encapsulatedcollections.origin.itinerary
 
 fun Iterable<Itinerary>.shortest() =
     minByOrNull {

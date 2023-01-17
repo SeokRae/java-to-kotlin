@@ -1,7 +1,7 @@
 package com.example.travelator._15encapsulatedcollections.origin;
 
 import com.example.travelator._15encapsulatedcollections.origin.itinerary.Journey;
-import travelator.itinerary.RouteKt;
+import com.example.travelator._15encapsulatedcollections.origin.itinerary.RouteKt;
 
 import java.time.Duration;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.example.travelator._15encapsulatedcollections.origin.itinerary
 
 import com.example.travelator._15encapsulatedcollections.origin.Id
-import travelator.itinerary.Route
 import java.time.Duration
 
 data class Itinerary(
