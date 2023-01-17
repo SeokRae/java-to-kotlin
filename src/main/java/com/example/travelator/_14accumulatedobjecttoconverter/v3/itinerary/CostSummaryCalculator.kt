@@ -22,6 +22,7 @@ class CostSummaryCalculator(
         val total = lines
             .map { it.toMoney }
             .fold(Money.of(0, userCurrency), Money::add)
+
         return CostSummary(lines, total)
     }
 
