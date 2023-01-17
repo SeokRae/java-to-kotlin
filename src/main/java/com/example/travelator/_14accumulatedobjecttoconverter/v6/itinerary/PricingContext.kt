@@ -9,11 +9,11 @@ class PricingContext(
     private val userCurrency: Currency,
     private val exchangeRates: ExchangeRates,
 ) {
-    fun toUserCurrency(money: Money) = exchangeRates
+    private fun toUserCurrency(money: Money) = exchangeRates
         .convert(money, userCurrency)
 
     fun summarise(costs: Iterable<Money>): CostSummary {
-        // 통화별로 그룹을 나누고 ㅏㄱ 그룹에 속한 리스트의 합계를 구함
+        // 통화별로 그룹을 나누고 그룹에 속한 리스트의 합계를 구함
         val currencyTotals: List<Money> = costs
             .groupBy { it.currency }
             .values
