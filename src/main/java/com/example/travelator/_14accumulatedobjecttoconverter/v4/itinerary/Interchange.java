@@ -19,7 +19,7 @@ public class Interchange {
 		this.departureTime = departureTime;
 	}
 	
-	public static Interchange between(com.example.travelator._14accumulatedobjecttoconverter.v3.itinerary.Journey incoming, Journey outgoing) {
+	public static Interchange between(Journey incoming, Journey outgoing) {
 		return new Interchange(
 			incoming.getArrivesAt(), incoming.getArrivalTime(),
 			outgoing.getDepartsFrom(), outgoing.getDepartureTime());
