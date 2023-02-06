@@ -31,7 +31,7 @@ public class CostSummaryCalculator {
 		var totals = new ArrayList<>(currencyTotals.values());
 		totals.sort(comparing(m -> m.getCurrency().getCurrencyCode()));
 		
-		CostSummary summary = new CostSummary(userCurrency);
+		var summary = new CostSummary(userCurrency);
 		for (var total : totals) {
 			summary.addLine(exchangeRates.convert(total, userCurrency));
 		}

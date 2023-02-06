@@ -39,7 +39,7 @@ public class Route {
 	
 	public void addCostsTo(PricingContext calculator) {
 		for (var j : journeys) {
-			calculator.addCost(j.getPrice());
+			calculator.toUserCurrency(j.getPrice());
 		}
 	}
 	

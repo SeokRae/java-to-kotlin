@@ -9,7 +9,7 @@ class PricingContext(
     private val userCurrency: Currency,
     private val exchangeRates: ExchangeRates,
 ) {
-    private fun toUserCurrency(money: Money) = exchangeRates
+    fun toUserCurrency(money: Money) = exchangeRates
         .convert(money, userCurrency)
 
     fun summarise(costs: Iterable<Money>): CostSummary {

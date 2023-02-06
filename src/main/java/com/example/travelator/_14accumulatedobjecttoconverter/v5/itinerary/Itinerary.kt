@@ -8,7 +8,7 @@ data class Itinerary(
     val accommodations: List<Accommodation> = emptyList(),
 ) {
     fun addCostsTo(calculator: CostSummaryCalculator) {
-        route.addCostsTo(calculator)
+//        route.addCostsTo(calculator)
         accommodations.addCostsTo(calculator)
     }
 
